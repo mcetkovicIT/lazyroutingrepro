@@ -23,9 +23,18 @@ For this specific bug, that is enough and easier to reason about than a full rep
 
 ## Start PostgreSQL
 
-```powershell
+Because schema and seed data are now created by Docker init SQL, start from a clean container state:
+
+`powershell
+docker compose -f C:\Users\mcetkovic\IdeaProjects\Projects\lazy-routing-repro\docker-compose.yaml down
 docker compose -f C:\Users\mcetkovic\IdeaProjects\Projects\lazy-routing-repro\docker-compose.yaml up -d
-```
+` 
+
+This creates both tables (
+outing_probe, write_audit) in both databases and seeds:
+
+- master DB with MASTER`r
+- slave DB with SLAVE`r
 
 ## Run the app
 
@@ -71,7 +80,3 @@ The old PowerShell version is still available at `scripts\load-test.ps1` if you 
 
 
 ## Compare with datasource-micrometer disabled  or removing the dependency
-
-```powershell
-.\gradlew bootRun --args="--jdbc.datasource-proxy.enabled=false"
-```

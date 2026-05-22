@@ -8,6 +8,8 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5433:5432"
+    volumes:
+      - ./docker/postgres/master-init:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d masterdb"]
       interval: 5s
@@ -23,6 +25,8 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5434:5432"
+    volumes:
+      - ./docker/postgres/slave-init:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d slavedb"]
       interval: 5s

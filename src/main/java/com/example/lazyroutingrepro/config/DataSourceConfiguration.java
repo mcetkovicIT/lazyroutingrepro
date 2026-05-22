@@ -52,19 +52,4 @@ public class DataSourceConfiguration {
     return new DataSourceProperties();
   }
 
-  @Bean
-  @Primary
-  public JdbcTemplate jdbcTemplate(DataSource dataSource) {
-    return new JdbcTemplate(dataSource);
-  }
-
-  @Bean
-  public JdbcTemplate masterJdbcTemplate(@Qualifier("masterDataSource") DataSource dataSource) {
-    return new JdbcTemplate(dataSource);
-  }
-
-  @Bean
-  public JdbcTemplate slaveJdbcTemplate(@Qualifier("slaveDataSource") DataSource dataSource) {
-    return new JdbcTemplate(dataSource);
-  }
 }
