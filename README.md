@@ -26,8 +26,8 @@ For this specific bug, that is enough and easier to reason about than a full rep
 Because schema and seed data are now created by Docker init SQL, start from a clean container state:
 
 `powershell
-docker compose -f C:\Users\mcetkovic\IdeaProjects\Projects\lazy-routing-repro\docker-compose.yaml down
-docker compose -f C:\Users\mcetkovic\IdeaProjects\Projects\lazy-routing-repro\docker-compose.yaml up -d
+docker compose -f docker-compose.yaml down
+docker compose -f docker-compose.yaml up -d
 ` 
 
 This creates both tables (
@@ -75,8 +75,6 @@ How to read the result:
 
 - good: readonly traffic stays on `SLAVE|READER|slavedb`
 - bad: readonly traffic appears on `MASTER|WRITER|masterdb`
-
-The old PowerShell version is still available at `scripts\load-test.ps1` if you want it.
 
 
 ## Compare with datasource-micrometer disabled  or removing the dependency
