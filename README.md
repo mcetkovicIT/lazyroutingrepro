@@ -25,10 +25,9 @@ For this specific bug, that is enough and easier to reason about than a full rep
 
 Because schema and seed data are now created by Docker init SQL, start from a clean container state:
 
-`
-docker compose -f docker-compose.yaml down
-docker compose -f docker-compose.yaml up -d
-` 
+- docker compose -f docker-compose.yaml down
+- docker compose -f docker-compose.yaml up -d
+
 
 This creates both tables (
 outing_probe, write_audit) in both databases and seeds:
