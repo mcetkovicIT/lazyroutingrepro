@@ -25,7 +25,7 @@ For this specific bug, that is enough and easier to reason about than a full rep
 
 Because schema and seed data are now created by Docker init SQL, start from a clean container state:
 
-`powershell
+`
 docker compose -f docker-compose.yaml down
 docker compose -f docker-compose.yaml up -d
 ` 
