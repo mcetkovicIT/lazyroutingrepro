@@ -1,0 +1,30 @@
+services:
+  postgres-master:
+    image: postgres:16
+    container_name: lazy-routing-repro-master
+    environment:
+      POSTGRES_DB: masterdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d masterdb"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  postgres-slave:
+    image: postgres:16
+    container_name: lazy-routing-repro-slave
+    environment:
+      POSTGRES_DB: slavedb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d slavedb"]
+      interval: 5s
+      timeout: 3s
+      retries: 20

@@ -1,0 +1,50 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: lazy-routing-repro
+  datasource:
+    master:
+      url: jdbc:postgresql://localhost:5433/masterdb
+      username: postgres
+      password: postgres
+      hikari:
+        pool-name: MasterHikariCP
+        auto-commit: false
+        maximum-pool-size: 5
+        minimum-idle: 1
+        connection-timeout: 30000
+    slave:
+      url: jdbc:postgresql://localhost:5434/slavedb
+      username: postgres
+      password: postgres
+      hikari:
+        pool-name: SlaveHikariCP
+        auto-commit: false
+        maximum-pool-size: 5
+        minimum-idle: 1
+        connection-timeout: 30000
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        connection:
+          provider_disables_autocommit: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.springframework.jdbc.datasource: DEBUG
+    com.example.lazyroutingrepro: DEBUG
