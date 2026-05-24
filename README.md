@@ -19,7 +19,7 @@ For this specific bug, that is enough and easier to reason about than a full rep
 
 - Spring Boot `3.3.0`
 - Java `21`
-- `datasource-micrometer-spring-boot` `1.0.0`
+- `datasource-micrometer-spring-boot` `1.4.1`
 
 ## Start PostgreSQL
 
